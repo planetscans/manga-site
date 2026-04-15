@@ -2,12 +2,10 @@ const mangaList = [
   {
     title: "Solo Leveling",
     image: "https://via.placeholder.com/150",
-    chapters: ["Chapter 1", "Chapter 2"]
-  },
-  {
-    title: "Attack on Titan",
-    image: "https://via.placeholder.com/150",
-    chapters: ["Chapter 1", "Chapter 2"]
+    chapters: [
+      { name: "Chapter 1", images: ["https://via.placeholder.com/800x1200"] },
+      { name: "Chapter 2", images: ["https://via.placeholder.com/800x1200"] }
+    ]
   }
 ];
 
@@ -22,19 +20,29 @@ function displayManga(list) {
       <img src="${manga.image}">
       <h3>${manga.title}</h3>
     `;
-    div.onclick = () => openManga(manga);
+    div.onclick = () => showChapters(manga);
     container.appendChild(div);
   });
 }
 
-function openManga(manga) {
-  alert("الفصول:\n" + manga.chapters.join("\n"));
+function showChapters(manga) {
+  container.innerHTML = `<h2>${manga.title}</h2>`;
+  manga.chapters.forEach(ch => {
+    const btn = document.createElement("button");
+    btn.innerText = ch.name;
+    btn.onclick = () => readChapter(ch);
+    container.appendChild(btn);
+  });
 }
 
-document.getElementById("search").addEventListener("input", (e) => {
-  const value = e.target.value.toLowerCase();
-  const filtered = mangaList.filter(m => m.title.toLowerCase().includes(value));
-  displayManga(filtered);
-});
+function readChapter(chapter) {
+  container.innerHTML = "";
+  chapter.images.forEach(img => {
+    const image = document.createElement("img");
+    image.src = img;
+    image.style.width = "100%";
+    container.appendChild(image);
+  });
+}
 
 displayManga(mangaList);
