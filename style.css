@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #111;
+  color: #fff;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: #1a1a1a;
+}
+
+input {
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+#manga-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  padding: 20px;
+}
+
+.card {
+  background: #222;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card img {
+  width: 100%;
+}
+
+.card h3 {
+  padding: 10px;
+  font-size: 14px;
+}
